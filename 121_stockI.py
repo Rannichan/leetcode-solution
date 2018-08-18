@@ -11,12 +11,15 @@ class Solution:
         max_val = max(prices)
         max_idx = prices.index(max_val)
         if min_idx == max_idx:
+            # if prices doesn't change during the days, the max profit will be 0
             return 0
         elif min_idx < max_idx:
+            # if minimum price emerges before maximum price, the max profit will be difference of them
             buy_date = min_idx
             sell_date = max_idx
             return prices[sell_date]-prices[buy_date]
-        else:  # max_idx < min_idx
+        else:
+            # if minimum price emerges after maximum price, there be 3 possible situations at most
             profits = []
             if min_idx < len(prices)-1:
                 max_val_pos = max(prices[min_idx+1:])
