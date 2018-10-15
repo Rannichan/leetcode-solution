@@ -65,11 +65,29 @@ class MyCalendar:
                 return True
 
 
+import bisect
+class MyCalendar2(object):
+
+    def __init__(self):
+        self.calendar = []
+
+    def book(self, start, end):
+        if start >= end:
+            return False
+
+        right_idx = bisect.bisect_right(self.calendar, start)
+        if right_idx < len(self.calendar) and (right_idx % 2 == 1 or end > self.calendar[right_idx]):
+            return False
+
+        self.calendar[right_idx:right_idx] = [start, end]
+        return True
+
+
 if __name__ == '__main__':
-    mc = MyCalendar()
-    print(mc.book(10,20))
+    mc = MyCalendar2()
+    print(mc.book(10, 20))
     print(mc.book(15, 25))
     print(mc.book(20, 30))
     print(mc.book(5, 8))
     print(mc.book(8, 9))
-    print(mc.once)
+    print(mc.calendar)

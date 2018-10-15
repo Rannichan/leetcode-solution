@@ -1,3 +1,7 @@
+"""
+Big idea: heap sort
+"""
+
 class Solution:
     def kSmallestPairs(self, nums1, nums2, k):
         """
